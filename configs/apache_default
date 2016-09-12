@@ -1,0 +1,153 @@
+<VirtualHost *:80>
+        # The ServerName directive sets the request scheme, hostname and port that
+        # the server uses to identify itself. This is used when creating
+        # redirection URLs. In the context of virtual hosts, the ServerName
+        # specifies what hostname must appear in the request's Host: header to
+        # match this virtual host. For the default virtual host (this file) this
+        # value is not decisive as it is used as a last resort host regardless.
+        # However, you must set it for any further virtual host explicitly.
+        #ServerName www.example.com
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+        # error, crit, alert, emerg.
+        # It is also possible to configure the loglevel for particular
+        # modules, e.g.
+        #LogLevel info ssl:warn
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        # For most configuration files from conf-available/, which are
+        # enabled or disabled at a global level, it is possible to
+        # include a line for only one particular virtual host. For example the
+        # following line enables the CGI configuration for this host only
+        # after it has been globally disabled with "a2disconf".
+        #Include conf-available/serve-cgi-bin.conf
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+
+<VirtualHost *:80>
+        ServerAdmin desarrollo@tpvenlanube.com
+        DocumentRoot /var/www/proyectos/nuevoadmin/web
+        ServerName admin.tpvenlanube.local
+        ServerAlias admin.tpvenlanube.local
+        ErrorLog /var/log/apache2/admin.error.log
+        CustomLog /var/log/apache2/admin.custom.log combined
+        AddDefaultCharset UTF-8
+        <Directory /var/www/proyectos/nuevoadmin>
+                Options FollowSymLinks
+                AllowOverride All
+        </Directory>
+        SetEnv DB_HOST bbdd-dev-host.tpvenlanube.com
+        SetEnv DB_NAME estetica16_qa_admintpv
+        SetEnv DB_USER root
+        SetEnv DB_PASS milk432
+        SetEnv URL_WEBADM http://web.tpvenlanube.local/administrator
+        SetEnv URL_WEB http://web.tpvenlanube.local/
+        SetEnv MAIL_SUPPORT soporte@tpvenlanube.com
+        SetEnv SMTP_HOST smtp.tpvenlanube.es
+        SetEnv SMTP_PORT 25
+        SetEnv SMTP_USER user
+        SetEnv SMTP_PASS password
+        SetEnv SMTP_CRYPT tls
+        SetEnv URL_MEMC localhost
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerAdmin desarrollo@tpvenlanube.com
+        DocumentRoot /var/www/proyectos/web
+		
+        ServerName web.tpvenlanube.local
+        ServerAlias web.tpvenlanube.local
+		
+        ErrorLog /var/log/apache2/web.error.log
+        TransferLog /var/log/apache2/web.log
+		
+        # PARA COMPATIBILIZAR EL CHARSET DEL APACHE2.CONF PARA ISO-8859-1 O UTF-8 METER ESTA LINEA
+        addDefaultCharset UTF-8
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerAdmin desarrollo@tpvenlanube.com
+        DocumentRoot /var/www/proyectos/tpv/web
+
+        ServerName tpv.tpvenlanube.local
+        ServerAlias tpv.tpvenlanube.local
+
+        SetEnv URL_TPV http://tpv.tpvenlanube.local
+        SetEnv URL_WEB http://web.tpvenlanube.local
+
+        SetEnv DB_HOST bbdd-dev-host.tpvenlanube.com
+        SetEnv DB_USER root
+        SetEnv DB_PASS milk432
+        SetEnv DB_NAME estetica16_qa_admintpv
+
+        # PARA COMPATIBILIZAR EL CHARSET DEL APACHE2.CONF PARA ISO-8859-1 O UTF-8 METER ESTA LINEA
+        addDefaultCharset UTF-8
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerAdmin desarrollo@tpvenlanube.com
+        DocumentRoot /var/www/proyectos/api/web
+		
+        ServerName api.tpvenlanube.local
+        ServerAlias api.tpvenlanube.local
+		
+        ErrorLog /var/log/apache2/api.error.log
+		
+        # PARA COMPATIBILIZAR EL CHARSET DEL APACHE2.CONF PARA ISO-8859-1 O UTF-8 METER ESTA LINEA
+        addDefaultCharset UTF-8
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerAdmin desarrollo@tpvenlanube.com
+        DocumentRoot /var/www/proyectos/apisage/web
+		
+        ServerName apisage.tpvenlanube.local
+        ServerAlias apisage.tpvenlanube.local
+		
+        ErrorLog /var/log/apache2/apisage.error.log
+		
+        # PARA COMPATIBILIZAR EL CHARSET DEL APACHE2.CONF PARA ISO-8859-1 O UTF-8 METER ESTA LINEA
+		
+        addDefaultCharset UTF-8
+        <FilesMatch ".html">
+                SetHandler application/x-httpd-php
+        </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerAdmin desarrollo@tpvenlanube.com
+        DocumentRoot /var/www/proyectos/apisage/web/ws
+		
+        ServerName wssage.tpvenlanube.local
+        ServerAlias wssage.tpvenlanube.local
+		
+        ErrorLog /var/log/apache2/wssage.error.log
+		
+        # PARA COMPATIBILIZAR EL CHARSET DEL APACHE2.CONF PARA ISO-8859-1 O UTF-8 METER ESTA LINEA
+		
+        addDefaultCharset UTF-8
+        <FilesMatch ".html">
+                SetHandler application/x-httpd-php
+        </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:80>
+		ServerAdmin desarrollo@tpvenlanube.com
+		DocumentRoot /var/www/proyectos/control_plataformas/
+		
+		ServerName plataformas.tpvenlanube.local
+		ServerAlias plataformas.tpvenlanube.local
+		
+		DirectoryIndex index.php
+		
+		ErrorLog /var/log/apache2/plataformas.error
+		TransferLog /var/log/apache2/plataformas.log
+		
+		addDefaultCharset UTF-8
+</VirtualHost>
